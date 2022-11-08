@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import AbList from './pages/ab-list';
+import Tmp from './pages/Tmp';
+import Login from './pages/Login';
+import Navbar from './components/Navbar';
+import {ThemeContextProvider} from './contexts/ThemeContext'
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+      <ThemeContextProvider>
+        <Navbar />
+        <Routes>
+          <Route path="/list" element={ <AbList /> } />
+          <Route path="/" element={ <AbList /> } />
+
+          <Route path="/tmp/:sid" element={ <Tmp /> } />
+          <Route path="/tmp" element={ <Tmp /> } />
+          <Route path="/login" element={ <Login /> } />
+          
+        </Routes>
+        </ThemeContextProvider>
+      </BrowserRouter>
+    </>
+
   );
 }
 

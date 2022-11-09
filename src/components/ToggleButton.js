@@ -1,17 +1,16 @@
-import { useState, useContext } from "react";
-import ThemeContext, {themes} from '../contexts/ThemeContext' ;
+import { useState} from "react";
 
-export default function ToggleButton ({stateIndex, texts}) {
+export default function ToggleButton ({stateIndex, texts, handler}) {
     // console.log({stateIndex});
     const [myIndex, setMyIndex] = useState(stateIndex);
-    const  {name, setTheme} = useContext(ThemeContext);
 
      const classNames = ['btn'];
      classNames.push(myIndex === 0? 'btn-primary': 'btn-outline-primary');
 
      const myClick = ()=> {
-        setMyIndex(myIndex ===0 ? 1: 0);
-        setTheme(myIndex ===0 ? themes.light: themes.dark);
+        const nextStatusIndex = myIndex === 0? 1: 0;
+        setMyIndex(nextStatusIndex);
+        handler(nextStatusIndex);
     };
 
     return (
@@ -28,4 +27,5 @@ export default function ToggleButton ({stateIndex, texts}) {
 ToggleButton.defaultProps= {
     stateIndex: 0,
     texts: ['關', '開'],
-}
+    handler: (index) => {},
+};

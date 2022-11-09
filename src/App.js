@@ -3,14 +3,13 @@ import AbList from './pages/ab-list';
 import Tmp from './pages/Tmp';
 import Login from './pages/Login';
 import Navbar from './components/Navbar';
-import {ThemeContextProvider} from './contexts/ThemeContext'
+import MyContextProviders from './contexts/MyContextProviders';
 
 function App() {
 
   return (
     <>
-      <BrowserRouter>
-      <ThemeContextProvider>
+      <MyContextProviders>
         <Navbar />
         <Routes>
           <Route path="/list" element={ <AbList /> } />
@@ -21,8 +20,7 @@ function App() {
           <Route path="/login" element={ <Login /> } />
           
         </Routes>
-        </ThemeContextProvider>
-      </BrowserRouter>
+      </MyContextProviders>
     </>
 
   );

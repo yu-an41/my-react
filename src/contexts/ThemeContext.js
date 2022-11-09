@@ -2,16 +2,18 @@ import { createContext, useState } from "react";
 
 export const themes = {
     dark: {
+        name: 'dark',
         backgroundColor: 'gray',
         color: 'white'
     },
     light: {
-        backgroundColor: 'white',
-        color: 'gray'
+        name: 'light',
+        backgroundColor: 'yellow',
+        color: 'black'
     }
 };
 
-const ThemeContext = createContext({...themes.dark});
+const ThemeContext = createContext({});
 
 export default ThemeContext;
 

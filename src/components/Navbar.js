@@ -1,26 +1,25 @@
 import {Link, useLocation} from 'react-router-dom';
+import ToggleButton from './ToggleButton';
 
 export default function Navbar() {
   const location = useLocation();
   console.log(location.pathname);
   const seg1 = location.pathname.split('/')[1];
 
-  const actives = {
-    'list': 'nav-link ',
-    'tmp': 'nav-link ',
-    'login': 'nav-link ',
-  }
+  const actives = {  }
 
-  if(actives[seg1]){
-    actives[seg1] += 'active';
-  }
+  actives[seg1] = {
+    backgroundColor: "lightblue",
+    borderRadius: "10px",
+  };
+
   return (
     <div className="container">
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
-          <a className="navbar-brand" href="/#">
+          <Link className="navbar-brand" to="/#">
             Navbar
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -33,21 +32,26 @@ export default function Navbar() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className={actives.list} to="/list">
+                <Link className="nav-link" style={actives.list} to="/list">
                   AB-list
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className={actives.tmp} to="/tmp">
+                <Link className="nav-link" style={actives.tmp} to="/tmp">
                   tmp
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className={actives.tmp} to="/login">
-                login
+                <Link className="nav-link" style={actives.login} to="/login">
+                  login
                 </Link>
+              </li>
+            </ul>
+            <ul className="navbar-nav mb-2 mb-lg-0">
+              <li className="nav-item">
+                <ToggleButton texts={['深色','淺色']}/>
               </li>
             </ul>
           </div>

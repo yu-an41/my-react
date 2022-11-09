@@ -5,10 +5,12 @@ import Login from './pages/Login';
 import Navbar from './components/Navbar';
 import MyContextProviders from './contexts/MyContextProviders';
 
+
 function App() {
 
   return (
     <>
+    <BrowserRouter>
       <MyContextProviders>
         <Navbar />
         <Routes>
@@ -21,6 +23,7 @@ function App() {
           
         </Routes>
       </MyContextProviders>
+      </BrowserRouter>
     </>
 
   );

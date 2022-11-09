@@ -2,10 +2,12 @@ import {useContext} from 'react';
 import {Link, useLocation} from 'react-router-dom';
 import ToggleButton from './ToggleButton';
 import ThemeContext, {themes} from '../contexts/ThemeContext' ;
+import AuthContext from '../contexts/AuthContext';
 
 export default function Navbar() {
   const location = useLocation();
   const {name: themeName, setTheme} = useContext(ThemeContext);
+  const { myAuth, logout } = useContext(AuthContext);
   console.log({themeName});
   
   const seg1 = location.pathname.split('/')[1];
@@ -52,8 +54,30 @@ export default function Navbar() {
                   login
                 </Link>
               </li>
-            </ul>
-            <ul className="navbar-nav mb-2 mb-lg-0">
+          </ul>
+          <ul className="navbar-nav mb-2 mb-lg-0">
+            {myAuth.authorised? (
+              <>
+                <li className="nav-item">
+                  <a className="nav-link" href="/#">
+                    {myAuth.account}
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="btn nav-link" href="/#"
+                  onClick={(e)=> {
+                    e.preventDefault();
+                    logout();
+                  }}>
+                    Logout
+                  </a>
+                </li>
+              </>
+          ) : (
+            <Link className="nav-link" style={actives.login} to="/login">
+              Login
+            </Link>
+          )}
               <li className="nav-item">
                 <ToggleButton 
                 texts={['深色','淺色']}
@@ -63,7 +87,7 @@ export default function Navbar() {
                 }}
                 />
               </li>
-            </ul>
+          </ul>
           </div>
         </div>
       </nav>

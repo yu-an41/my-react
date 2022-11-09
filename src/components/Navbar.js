@@ -49,11 +49,6 @@ export default function Navbar() {
                   tmp
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" style={actives.login} to="/login">
-                  login
-                </Link>
-              </li>
           </ul>
           <ul className="navbar-nav mb-2 mb-lg-0">
             {myAuth.authorised? (

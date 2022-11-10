@@ -54,6 +54,11 @@ export default function Navbar() {
                   tmp
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" style={actives.canvas1} to="/canvas1">
+                  Canvas1
+                </Link>
+              </li>
           </ul>
           <ul className="navbar-nav mb-2 mb-lg-0">
             {myAuth.authorised? (

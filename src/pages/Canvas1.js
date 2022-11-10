@@ -21,15 +21,43 @@ export default function Canvas1() {
         setCart(newCart);
     };
 
-    useEffect(() => {
+    const getImageFromFresh = (path) => {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = () => {
+                resolve(img);
+            };
+            img.src = path;
+        });
+    };
+
+    const renderBG = async() => {
+        const ctx = cRef.current.getContext('2d');
+        const img = await getImageFromFresh('/imgs/city.jpg')
+        ctx.drawImage(img, 0, 0);
+
+    }
+
+    const renderCart = async () => {
         const ctx = cRef.current.getContext('2d');
 
-        const img = new Image();
-        img.onload= () => {
-            ctx.drawImage(img, 0, 0);
-        };
-        img.src = './imgs/city.jpg';
-    }, [])
+        let x = 0, y=0;
+        for(let item of cart) {
+            const img = await getImageFromFresh("/imgs/" + item.img);
+
+            ctx.drawImage(img, x, y);
+            x += 100;
+            y += 100;
+
+        }
+    };
+
+    useEffect(() => {
+        (async() => {
+            await renderBG();
+            await renderCart();
+        })();
+    }, [cart])
 
     return (
     <div className="container">

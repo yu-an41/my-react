@@ -1,7 +1,7 @@
 export const productData = [
     {
       id: 10,
-      name: "青蛙",
+      name: "妙蛙種子",
       price: 100,
       img: "1.png",
     },
@@ -13,13 +13,13 @@ export const productData = [
     },
     {
       id: 14,
-      name: "勞數",
+      name: "皮卡chuuuu",
       price: 200,
       img: "3.png",
     },
     {
       id: 17,
-      name: "烏歸",
+      name: "傑尼傑尼",
       price: 60,
       img: "4.png",
     },
